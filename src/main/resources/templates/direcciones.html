@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Direcciones</title>
+</head>
+<body>
+    <h1>Direcciones de las Personas</h1>
+    <a th:href="@{/personas}">Volver a personas</a>
+    <a th:href="@{/personas/{personaId}/direcciones/nueva(personaId=${personaId})}">Agregar una direccion</a>
+    <table border="1">
+        <tr><th>ID</th><th>Direccion</th><th>Acciones</th></tr>
+        <tr th:each="direccion : ${direcciones}">
+            <td th:text="${direccion.id}"></td>
+            <td th:text="${direccion.direccionpersona}"></td>
+            <td>
+                <a th:href="@{/personas/{personaId}/direcciones/editar/{id}(personaId=${personaId}, id=${direccion.id})}">Editar</a>
+                <a th:href="@{/personas/{personaId}/direcciones/eliminar/{id}(personaId=${personaId}, id=${direccion.id})}"
+                onclick="return confirm('Esta seguro que desea eliminar esta direccion?');">
+                Eliminar
+                </a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
